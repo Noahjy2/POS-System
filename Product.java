@@ -16,6 +16,10 @@ public class Product {
         return "[" + this.id + "]  [" + this.name + "]  [" + this.price + "]  [" + this.stock + "]";
     }
 
+    public String toFileString(){
+        return this.id + "," + this.name + "," + this.price + "," + this.stock;
+    }
+
 
     public String getId(){
         return this.id;
