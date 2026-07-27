@@ -20,6 +20,7 @@ public class MainConsole {
 
             switch (choice) {
                 case "1" -> productManagement(scanner);
+                case "2" -> shoppingCart(scanner);
                 case "5" -> System.out.println("Bye");
                 default -> System.out.println("Invalid choice.");
             }
@@ -34,7 +35,6 @@ public class MainConsole {
 
     public static void productManagement(Scanner scanner){
         ProductManager manager = new ProductManager();
-        manager.initialize(); //for testing
 
         while (true){
              System.out.print("""
@@ -56,11 +56,38 @@ public class MainConsole {
                 case "3" -> manager.searchProduct(scanner);
                 case "4" -> manager.updateProduct(scanner);
                 case "5" -> manager.deleteProduct(scanner);
-                case "6" -> {System.out.println("Returning To Main Menu");return;}
+                case "6" -> {System.out.println("Returning to Main Menu.");return;}
                 default -> System.out.println("Invalid choice.");
             }
         }
-        
-       
+    }
+
+    public static void shoppingCart(Scanner scanner){
+        ShoppingCart cart = new ShoppingCart();
+
+        while (true){
+            System.out.print("""
+             \n========== SHOPPING CART ==========      
+             
+             1. Add Product to Cart
+             2. View Cart
+             3. Update Quantity
+             4. Remove Product
+             5. Clear Cart
+             6. Return Main Menu
+            """);
+            System.out.print("Enter your choice (1-6): ");
+            String option = scanner.nextLine();
+
+            switch (option) {
+                case "1" -> cart.addItem(scanner);
+                case "2" -> cart.viewCart();
+                case "3" -> cart.updateQuantity(scanner);
+                case "4" -> cart.removeItem(scanner);
+                case "5" -> cart.clearCart();
+                case "6" -> {System.out.println("Returning to Main Menu.");return;}
+                default -> System.out.println("Invalid choice.");
+            }
+        }
     }
 }
