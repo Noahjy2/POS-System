@@ -16,14 +16,14 @@ public class FileManager {
         try (FileWriter writer = new FileWriter(filePath)){
             
             for (Product product : products){
-                writer.write(product.toFileString());
+                writer.write(product.toFileString() + "\n");
             }
         }
         catch (FileNotFoundException e){
             System.out.println("Cannot Find Products File Location.");
         }
         catch (IOException e){
-            System.out.println("Cannot Access To File");
+            System.out.println("Cannot Access to File");
         }
         catch (Exception e){
             System.out.println("Something Went Wrong");
@@ -62,10 +62,14 @@ public class FileManager {
             System.out.println("Cannot Find File Location.");
         }
         catch (IOException e){
-            System.out.println("Cannot Access To File.");
+            System.out.println("Cannot Access to File.");
         }
         catch (Exception e){
             System.out.println("Something Went Wrong.");
         }
+    }
+
+    public void saveCartItem(ArrayList<CartItem> cartItems){
+        
     }
 }

@@ -3,17 +3,9 @@ import java.util.Scanner;
 
 public class ProductManager {
     ArrayList<Product> products = new ArrayList<>();
+    FileManager file = new FileManager();
 
-    //Initialize
-    public void initialize(){
-        Product p1 = new Product("p0001", "Sprite", 2.50, 40);
-        Product p2 = new Product("p0002", "Notebook", 4.25, 29);
-        products.add(p1);
-        products.add(p2);
-    }
     
-
-
     public Product getProduct(String id){
         for (Product product : products){
             if (product.getId().equals(id)){
@@ -22,7 +14,6 @@ public class ProductManager {
         }
         return null;
     }
-
 
 
     public void addProduct(Scanner scanner){
@@ -50,6 +41,8 @@ public class ProductManager {
 
         Product newProduct = new Product(id, name, price, stock);
         products.add(newProduct);
+
+        file.saveProducts(products);
     }
 
 
@@ -61,6 +54,8 @@ public class ProductManager {
         if (getProduct(id) != null){
             products.remove(getProduct(id));
             System.out.println("Product Removed Successfully.");
+
+            file.saveProducts(products);
         } else {
             System.out.println("Product Not Found.");
         }
@@ -143,6 +138,7 @@ public class ProductManager {
             
             default -> System.out.println("Invalid choice.");
         }
+        file.saveProducts(products);
     }
 
 
