@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShoppingCart{
+
     private ArrayList<CartItem> cartItems = new ArrayList<>();
-    private ProductManager manager;
-    private FileManager file = new FileManager();
+    private ProductManager product;
 
 
-
-    public ShoppingCart(ProductManager manager){
-        this.manager = new ProductManager();
+    public ShoppingCart(ProductManager product){
+        this.product = product;
     }
 
 
@@ -27,11 +26,17 @@ public class ShoppingCart{
 
 
     public void addItem(Scanner scanner){
+
+        if (product.getProducts().isEmpty()){
+            System.out.println("There Is No Product Yet.");
+            return;
+        }
+
         System.out.print("Enter Product ID: ");
         String id = scanner.nextLine();
 
-        Product product = manager.getProduct(id);
-        if (product == null){
+        Product addProduct = product.getProduct(id);
+        if (addProduct == null){
             System.out.println("Product Not Found.");
             return;
         } 
@@ -49,10 +54,16 @@ public class ShoppingCart{
             }
         }    
 
+        if (quantity > addProduct.getStock()){
+            System.out.println("Not enough Item.");
+            return;
+        }
+
+
         if (getCartItem(id) != null){
             getCartItem(id).setQuantity(getCartItem(id).getQuantity() + quantity);
         } else {
-            CartItem cartItem = new CartItem(product, quantity);
+            CartItem cartItem = new CartItem(addProduct, quantity);
             cartItems.add(cartItem);
         }
        
@@ -102,6 +113,10 @@ public class ShoppingCart{
             }
         }
 
+        if (newQuantity > selectedCartItem.getProduct().getStock()){
+            //or = negative
+        }
+
         selectedCartItem.setQuantity(newQuantity);
         System.out.println("Quantity Updated Successfully.");        
     }
@@ -121,7 +136,7 @@ public class ShoppingCart{
         =============================================
         """);
         for (CartItem cartItem : cartItems){
-            System.out.printf("%-8s %-20s %5d",
+            System.out.printf("%-8s %-20s %5d\n",
                 cartItem.getProduct().getId(),
                 cartItem.getProduct().getName(),
                 cartItem.getQuantity()

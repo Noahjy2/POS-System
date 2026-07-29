@@ -2,8 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProductManager {
-    ArrayList<Product> products = new ArrayList<>();
-    FileManager file = new FileManager();
+    private ArrayList<Product> products = new ArrayList<>();
+    private FileManager file;
+
+    public ProductManager(FileManager file){
+        this.file = file;
+    }
+
+    public ArrayList<Product> getProducts(){
+        return products;
+    }
 
     
     public Product getProduct(String id){

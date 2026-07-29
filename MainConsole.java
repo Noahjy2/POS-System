@@ -2,9 +2,12 @@ import java.util.Scanner;
 
 public class MainConsole {
     public static void main(String[] args){
-        ProductManager manager = new ProductManager();
-
+        FileManager file = new FileManager();
+        ProductManager product = new ProductManager(file);
+        ShoppingCart cart = new ShoppingCart(product);
         Scanner scanner = new Scanner(System.in);
+
+        file.readProducts(product.getProducts());
 
         while (true) {
             System.out.print("""
@@ -20,8 +23,8 @@ public class MainConsole {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> productManagement(scanner, manager);
-                case "2" -> shoppingCart(scanner, manager);
+                case "1" -> productManagement(scanner, product);
+                case "2" -> shoppingCart(scanner, cart);
                 case "5" -> System.out.println("Bye");
                 default -> System.out.println("Invalid choice.");
             }
@@ -62,8 +65,8 @@ public class MainConsole {
         }
     }
 
-    public static void shoppingCart(Scanner scanner, ProductManager manager){
-        ShoppingCart cart = new ShoppingCart(manager);
+    public static void shoppingCart(Scanner scanner, ShoppingCart cart){
+        
 
         while (true){
             System.out.print("""
