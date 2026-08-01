@@ -15,7 +15,7 @@ public class Order {
     public String getId(){
        return this.orderId;
     }
-    public ArrayList<CartItem> getOrders(){
+    public ArrayList<CartItem> getCart(){
         return this.cart;
     }
     public double getTotal(){
@@ -26,7 +26,7 @@ public class Order {
     public void setId(String orderId){
         this.orderId = orderId;
     }
-    public void setTotal(int total){
+    public void setTotal(double total){
         this.total = total;
     }
 
