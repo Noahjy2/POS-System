@@ -1,2 +1,5 @@
-p0001,Sprite,2.5,40
-p0002,Notebook,4.25,29
+p0001,Sprite,2.5,31
+p0002,Notebook,4.25,25
+p0003,Watermelon,4.5,13
+p0004,Apple,1.9,32
+p0005,Lemon,1.28,24

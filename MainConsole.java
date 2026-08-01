@@ -5,6 +5,7 @@ public class MainConsole {
         FileManager file = new FileManager();
         ProductManager product = new ProductManager(file);
         ShoppingCart cart = new ShoppingCart(product);
+        POSSystem pos = new POSSystem(product, cart, file);
         Scanner scanner = new Scanner(System.in);
 
         file.readProducts(product.getProducts());
@@ -25,6 +26,8 @@ public class MainConsole {
             switch (choice) {
                 case "1" -> productManagement(scanner, product);
                 case "2" -> shoppingCart(scanner, cart);
+                case "3" -> pos.checkout(scanner);
+                case "4" -> pos.salesSummary(scanner);
                 case "5" -> System.out.println("Bye");
                 default -> System.out.println("Invalid choice.");
             }

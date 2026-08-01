@@ -11,6 +11,9 @@ public class ShoppingCart{
         this.product = product;
     }
 
+    public ArrayList<CartItem> getCartItems(){
+        return cartItems;
+    }
 
 
     public CartItem getCartItem(String id){
@@ -132,7 +135,7 @@ public class ShoppingCart{
 
         System.out.print("""
         \n=============================================
-        ID      Product Name        Quantity
+        ID       Product Name        Quantity
         =============================================
         """);
         for (CartItem cartItem : cartItems){
@@ -157,10 +160,7 @@ public class ShoppingCart{
     }
 
 
-
     public void clearCart(){
         cartItems.clear();
-        System.out.println("Cart cleared successfully.");
     }
-
 }
