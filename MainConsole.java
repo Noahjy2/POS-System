@@ -12,7 +12,7 @@ public class MainConsole {
 
         while (true) {
             System.out.print("""
-            ========== POS SYSTEM ==========
+            \n========== POS SYSTEM ==========
 
             1. Product Management 
             2. Shopping Cart

@@ -88,7 +88,50 @@ public class POSSystem {
         return String.format("Order%04d", nextId);
     }
 
+
+
+
     public void salesSummary(Scanner scanner){
+        ArrayList<Order> orders = file.readOrders();
+
+        if (orders.isEmpty()){
+            System.out.println("No Order Found.");
+            return;
+        }
+
+
+
+
+        System.out.println("========== SALES SUMMARY ==========\n");
+
+        System.out.println("Total Orders: " + orders.size());
+        System.out.printf("Total Revenue: RM %.2f\n", calculateRevenue(orders));
+        System.out.printf("Average Order: RM %.2f\n", (calculateRevenue(orders)/orders.size()) );
+        
+        System.out.println("\n========== ORDER LIST ==========");
+        displayOrder(orders);
+        System.out.println("================================");
         
     }
+
+    private double calculateRevenue(ArrayList<Order> orders){
+        
+        if (orders.isEmpty()){
+            return 0;
+        }
+        
+        double totalRevenue = 0;
+        for (Order order : orders){
+            totalRevenue += order.getTotal();
+        }
+        return totalRevenue;
+    }
+
+    private void displayOrder(ArrayList<Order> orders){
+        for (Order order : orders){
+            System.out.printf("%s  Total: RM %.2f\n", order.getId(), order.getTotal());
+        }
+    }
+
+    
 }
