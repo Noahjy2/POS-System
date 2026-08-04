@@ -50,5 +50,5 @@ A console-based Point of Sale (POS) system built with Java.
 ## Learning Objective
 
 - Practice File IO.
-- Building Foundamental for JDBC.
+- Building Fundamental for JDBC.
 - Understand the process of developing a project.
