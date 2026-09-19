@@ -51,6 +51,10 @@ public class ShoppingCart{
 
             try {
                 quantity = Integer.parseInt(input);
+                if (quantity <= 0){
+                    System.out.println("Quantity must be greater than 0.");
+                    continue;
+                }
                 break;
             } catch(NumberFormatException e){
                 System.out.println("Please Enter Valid Number.");
@@ -110,6 +114,10 @@ public class ShoppingCart{
 
             try {
                 newQuantity = Integer.parseInt(input);
+                if (newQuantity <= 0){
+                    System.out.println("Quantity must greater than 0.");
+                    continue;
+                }
                 break;
             } catch (NumberFormatException e){
                 System.out.println("Please Enter Valid Number.");
@@ -117,7 +125,8 @@ public class ShoppingCart{
         }
 
         if (newQuantity > selectedCartItem.getProduct().getStock()){
-            //or = negative
+            System.out.println("Not enough items.");
+            return;
         }
 
         selectedCartItem.setQuantity(newQuantity);
